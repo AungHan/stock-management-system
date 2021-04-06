@@ -28,6 +28,6 @@ public class Stock {
     public Stock(){}
 
     public String toString(){
-        return "Stock [" + id + ", " + stockName + "]";
+        return this.stockName;
     }
 }

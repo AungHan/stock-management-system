@@ -45,7 +45,7 @@ public class StockService {
         return saveStock(currentStock);
     }
 
-    public Stock findByStockName(String stockName){
+    public Stock getStockByStockName(String stockName){
         return repository.findByStockName(stockName);
     }
 }
