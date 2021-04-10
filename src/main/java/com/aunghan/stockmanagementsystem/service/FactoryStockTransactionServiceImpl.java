@@ -45,11 +45,12 @@ public class FactoryStockTransactionServiceImpl implements FactoryStockTransacti
         return saveFactoryStockTransaction(current);
     }
 
-//    public List<FactoryStockTransaction> getFactoryStockTransactionByDateRange(Date startDate, Date endDate){
-//        return repository.findAllByDateRange(startDate, endDate);
-//    }
+    // public List<FactoryStockTransaction> getFactoryStockTransactionByDateRange(Date startDate, Date endDate){
+    // return repository.findAllByDateRange(startDate, endDate);
+    // }
 
     public List<FactoryStockTransaction> getIncomingStocks(){
+        //return repository.findAll();
         return repository.findAllByTransactionType("incoming");
     }
 

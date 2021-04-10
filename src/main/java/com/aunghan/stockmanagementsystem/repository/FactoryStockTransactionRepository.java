@@ -7,6 +7,5 @@ import java.util.Date;
 import java.util.List;
 
 public interface FactoryStockTransactionRepository extends JpaRepository<FactoryStockTransaction, Integer> {
-    //List<FactoryStockTransaction> findAllByDateRange(Date startDate, Date endDate);
     List<FactoryStockTransaction> findAllByTransactionType(String transactionType);
 }

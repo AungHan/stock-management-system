@@ -15,7 +15,7 @@ public class FactoryStockTransaction {
     private int id;
 
     @Column(name="process_date")
-    private Date processDate;
+    private long processDate;
 
     @Column(name="transaction_type")
     private String transactionType;
