@@ -37,4 +37,18 @@ public class FactoryStockTransactionController {
         return service.saveFactoryStockTransaction(newFactoryStockTransaction);
     }
 
+    @DeleteMapping("/transactions/stock/{id}")
+    public String deleteFactoryStockTransaction(@PathVariable("id") int id){
+        return service.deleteFactoryStockTransaction(id);
+    }
+
+    @GetMapping("/transactions/stock/{id}")
+    public FactoryStockTransaction getStockTransactionById(@PathVariable("id") int id){
+        return service.getFactoryStockTransactionById(id);
+    }
+
+    @PutMapping("/transactions/stock/update")
+    public FactoryStockTransaction updateStockTransaction(@RequestBody FactoryStockTransaction updateFactoryStockTransaction){
+        return service.updateFactoryStockTransaction(updateFactoryStockTransaction);
+    }
 }

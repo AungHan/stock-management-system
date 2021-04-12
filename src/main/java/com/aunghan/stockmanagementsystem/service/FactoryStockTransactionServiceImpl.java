@@ -2,12 +2,13 @@ package com.aunghan.stockmanagementsystem.service;
 
 import com.aunghan.stockmanagementsystem.entity.FactoryStockTransaction;
 import com.aunghan.stockmanagementsystem.repository.FactoryStockTransactionRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Date;
 import java.util.List;
 
+@Slf4j
 @Service
 public class FactoryStockTransactionServiceImpl implements FactoryStockTransactionService {
     private final FactoryStockTransactionRepository repository;
@@ -31,6 +32,7 @@ public class FactoryStockTransactionServiceImpl implements FactoryStockTransacti
     }
 
     public FactoryStockTransaction updateFactoryStockTransaction(FactoryStockTransaction factoryStockTransaction){
+        log.info("Stock Transaction ID to update: " + factoryStockTransaction.getId());
         FactoryStockTransaction current = getFactoryStockTransactionById(factoryStockTransaction.getId());
         if (current == null) return null;
 
