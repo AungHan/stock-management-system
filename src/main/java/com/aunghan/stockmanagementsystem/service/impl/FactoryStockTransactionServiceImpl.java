@@ -1,7 +1,8 @@
-package com.aunghan.stockmanagementsystem.service;
+package com.aunghan.stockmanagementsystem.service.impl;
 
 import com.aunghan.stockmanagementsystem.entity.FactoryStockTransaction;
 import com.aunghan.stockmanagementsystem.repository.FactoryStockTransactionRepository;
+import com.aunghan.stockmanagementsystem.service.FactoryStockTransactionService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -58,5 +59,10 @@ public class FactoryStockTransactionServiceImpl implements FactoryStockTransacti
 
     public List<FactoryStockTransaction> getOutgoingStocks(){
         return repository.findAllByTransactionType("outgoing");
+    }
+
+    @Override
+    public List<FactoryStockTransaction> getStockTransactions(String transactionType) {
+        return repository.findAllByTransactionType(transactionType);
     }
 }

@@ -1,51 +1,21 @@
 package com.aunghan.stockmanagementsystem.service;
 
 import com.aunghan.stockmanagementsystem.entity.Stock;
-import com.aunghan.stockmanagementsystem.repository.StockRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Service
-public class StockService {
-    private final StockRepository repository;
+public interface StockService {
+    Stock saveStock(Stock stock);
 
-    @Autowired
-    public StockService(StockRepository repository){
-        this.repository = repository;
-    }
+    List<Stock> getStocks();
 
-    public Stock saveStock(Stock stock){
-        return repository.save(stock);
-    }
+    Stock getStockById(int id);
 
-    public List<Stock> getStocks(){
-        return repository.findAll();
-    }
+    String deleteStock(int id);
 
-    public Stock getStockById(int id){
-        return repository.findById(id).orElse(null);
-    }
+    Stock updateStock(Stock stock);
 
-    public String deleteStock(int id){
-        repository.deleteById(id);
-        return "deleted stock, id=" + id;
-    }
+    Stock getStockByStockName(String stockName);
 
-    public Stock updateStock(Stock stock){
-        Stock currentStock = getStockById(stock.getId());
-        if (currentStock == null) return null;
-
-        currentStock.setStockName(stock.getStockName());
-        currentStock.setStockDescription(stock.getStockDescription());
-        currentStock.setIsActive(stock.getIsActive());
-        currentStock.setCategory(stock.getCategory());
-
-        return saveStock(currentStock);
-    }
-
-    public Stock getStockByStockName(String stockName){
-        return repository.findByStockName(stockName);
-    }
+    String setActiveStatus(int id, boolean isActive);
 }

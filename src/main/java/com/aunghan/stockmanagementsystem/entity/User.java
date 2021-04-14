@@ -6,8 +6,8 @@ import javax.persistence.*;
 
 @Data
 @Entity
-@Table(name="employee")
-public class Employee {
+@Table(name="user")
+public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="id")
@@ -25,9 +25,12 @@ public class Employee {
     @Column(name="access_level")
     private int accessLevel;
 
-    public Employee(){}
+    @Column(name="is_active")
+    private boolean isActive;
 
-    public Employee(String username, String password, String email, int accessLevel) {
+    public User(){}
+
+    public User(String username, String password, String email, int accessLevel) {
         this.username = username;
         this.password = password;
         this.email = email;
@@ -35,6 +38,6 @@ public class Employee {
     }
 
     public String toString(){
-        return String.format("Employee=[id:%d, username:%s]", this.id, this.username);
+        return String.format("User=[id:%d, username:%s]", this.id, this.username);
     }
 }

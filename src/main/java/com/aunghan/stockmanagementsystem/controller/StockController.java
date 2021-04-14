@@ -9,6 +9,7 @@ import java.util.List;
 
 @CrossOrigin(origins = "http://localhost:3000", maxAge = 3600)
 @RestController
+@RequestMapping("/stocks")
 public class StockController {
 
     private final StockService service;
@@ -18,28 +19,28 @@ public class StockController {
         this.service = service;
     }
 
-    @GetMapping("/stock/{id}")
-    public Stock findStockById(@PathVariable int id){
+    @GetMapping("/{id}")
+    public Stock findStockById(@PathVariable("id") int id){
         return service.getStockById(id);
     }
 
-    @GetMapping("/stocks")
+    @GetMapping("/")
     public List<Stock> getStocks(){
         return service.getStocks();
     }
 
-    @PostMapping("/stock/add")
+    @PostMapping("/")
     public Stock addStock(@RequestBody Stock stock){
         return service.saveStock(stock);
     }
 
-    @PutMapping("/stock/update")
+    @PutMapping("/update")
     public Stock updateStock(@RequestBody Stock stock){
         return service.updateStock(stock);
     }
 
-    @DeleteMapping("/stock/{id}")
-    public String deleteStock(@PathVariable int id){
-        return service.deleteStock(id);
+    @DeleteMapping("/{id}")
+    public String deleteStock(@PathVariable("id") int id){
+        return service.setActiveStatus(id, false);
     }
 }

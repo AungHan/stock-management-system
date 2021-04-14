@@ -7,7 +7,9 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@CrossOrigin(origins = "http://localhost:3000", maxAge = 3600)
 @RestController
+@RequestMapping("/categories")
 public class CategoryController {
 
     private final CategoryService service;
@@ -17,28 +19,28 @@ public class CategoryController {
         this.service = service;
     }
 
-    @PostMapping("/category/add")
+    @PostMapping("/")
     public Category addCategory(@RequestBody Category category){
         return service.saveCategory(category);
     }
 
-    @GetMapping("/categories")
+    @GetMapping("/")
     public List<Category> getCategories(){
         return service.getCategories();
     }
 
-    @GetMapping("/category/{id}")
+    @GetMapping("/{id}")
     public Category findCategoryById(@PathVariable int id){
         return service.getCategoryById(id);
     }
 
-    @PutMapping("/category/update")
+    @PutMapping("/update")
     public Category updateCategory(@RequestBody Category category){
         return service.updateCategory(category);
     }
 
-    @DeleteMapping("/category/{id}")
+    @DeleteMapping("/{id}")
     public String deleteCategory(@PathVariable int id){
-        return service.deleteCategory(id);
+        return service.setActiveStatus(id, false);
     }
 }
