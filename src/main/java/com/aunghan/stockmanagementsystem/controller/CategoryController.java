@@ -19,12 +19,12 @@ public class CategoryController {
         this.service = service;
     }
 
-    @PostMapping("/")
+    @PostMapping("")
     public Category addCategory(@RequestBody Category category){
         return service.saveCategory(category);
     }
 
-    @GetMapping("/")
+    @GetMapping("")
     public List<Category> getCategories(){
         return service.getCategories();
     }

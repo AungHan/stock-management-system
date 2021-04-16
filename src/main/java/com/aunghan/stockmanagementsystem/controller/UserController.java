@@ -23,26 +23,26 @@ public class UserController {
         return service.getUserById(id);
     }
 
-    @GetMapping(value = "/", params = "username")
+    @GetMapping(value = "", params = "username")
     public User getUserByUsername(@RequestParam String username){
         if(username == null || username.isEmpty())
             return null;
         return service.getUserByUsername(username);
     }
 
-    @GetMapping(value = "/", params = "email")
+    @GetMapping(value = "", params = "email")
     public User getUserByEmail(@RequestParam String email){
         if(email == null || email.isEmpty())
             return null;
         return service.getUserByEmail(email);
     }
 
-    @GetMapping("/")
+    @GetMapping("")
     public List<User> getUsers(){
         return service.getUsers();
     }
 
-    @PostMapping("/")
+    @PostMapping("")
     public User saveUser(@RequestBody User user){
         return service.saveUser(user);
     }

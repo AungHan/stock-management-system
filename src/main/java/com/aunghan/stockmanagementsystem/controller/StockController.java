@@ -24,12 +24,12 @@ public class StockController {
         return service.getStockById(id);
     }
 
-    @GetMapping("/")
+    @GetMapping("")
     public List<Stock> getStocks(){
         return service.getStocks();
     }
 
-    @PostMapping("/")
+    @PostMapping("")
     public Stock addStock(@RequestBody Stock stock){
         return service.saveStock(stock);
     }

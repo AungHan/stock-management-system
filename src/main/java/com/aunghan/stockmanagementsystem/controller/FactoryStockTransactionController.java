@@ -25,7 +25,7 @@ public class FactoryStockTransactionController {
         this.service = service;
     }
 
-    @GetMapping(value = "/list", params = "transactionType")
+    @GetMapping(value = "", params = "transactionType")
     public ResponseEntity<List<FactoryStockTransaction>> getFactoryStockTransactions(@RequestParam String transactionType){
         if(transactionType == null || transactionType.isEmpty())
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
@@ -42,7 +42,7 @@ public class FactoryStockTransactionController {
         return service.getOutgoingStocks();
     }
 
-    @PostMapping("/")
+    @PostMapping("")
     public FactoryStockTransaction addStockTransaction(@RequestBody FactoryStockTransaction newFactoryStockTransaction){
         return service.saveFactoryStockTransaction(newFactoryStockTransaction);
     }
