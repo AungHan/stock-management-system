@@ -19,6 +19,9 @@ public class User {
     @Column(name="password")
     private String password;
 
+    @Column(name="token")
+    private String token;
+
     @Column(name="email")
     private String email;
 

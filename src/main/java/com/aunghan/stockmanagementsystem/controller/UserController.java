@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.UUID;
 
 @CrossOrigin(origins = "http://localhost:3000", maxAge = 3600)
 @RestController
@@ -16,6 +17,36 @@ public class UserController {
     @Autowired
     public UserController(UserService service) {
         this.service = service;
+    }
+
+    @PostMapping("/login")
+    public User login(@RequestParam("username") String username, @RequestParam("password") String password){
+        if(username.isEmpty() || password.isEmpty()) return null;
+        User user = service.getUserByUsername(username);
+        if(user == null) return null;
+        if(!user.getPassword().equals(password)) return null;
+
+        String token = UUID.randomUUID().toString();
+        user.setToken(token);
+
+        return service.saveUser(user);
+    }
+
+    @PostMapping("/register")
+    public User register(@RequestBody User user){
+        String token = UUID.randomUUID().toString();
+        user.setToken(token);
+
+        return service.saveUser(user);
+    }
+
+    @PostMapping("/logout")
+    public String logout(@RequestParam("username") String username){
+        User user = getUserByUsername(username);
+        if(user == null) return "No user found";
+        user.setToken("");
+        service.saveUser(user);
+        return "User logged out";
     }
 
     @GetMapping("/{id}")

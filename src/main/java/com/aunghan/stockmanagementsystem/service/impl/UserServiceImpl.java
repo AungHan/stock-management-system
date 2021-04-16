@@ -26,6 +26,12 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User saveUser(User user){
+        log.info(String.format("id:%d,email:%s,username:%s,password:%s",
+                    user.getId(),
+                    user.getEmail(),
+                user.getUsername(),
+                user.getPassword()
+                ));
         return this.repository.save(user);
     }
 
