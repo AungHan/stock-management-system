@@ -27,6 +27,7 @@ public class FactoryStockTransactionController {
 
     @GetMapping(value = "", params = "transactionType")
     public ResponseEntity<List<FactoryStockTransaction>> getFactoryStockTransactions(@RequestParam String transactionType){
+        log.info("get list");
         if(transactionType == null || transactionType.isEmpty())
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         return new ResponseEntity<>(service.getStockTransactions(transactionType), HttpStatus.OK);
